@@ -1,0 +1,64 @@
+section .text
+global _start
+_start: 
+        mov edx, len
+        mov ecx, string
+        mov ebx, 1
+        mov eax, 4
+        int 80h
+
+        cmp eax, 0
+        jz exit
+
+input:                                                          
+        mov edx, 1                                                    ;Task: Move the size of 1 to edx
+        mov ecx, number                                                    ;Task: Move the label 'number' to ecx
+        mov ebx, 0                                                    ;Task: Move the number associated with STDIN to ebx
+        mov eax, 3                                                    ;Task: Move the number associated with sys_read to eax
+        int 80h
+
+        mov ebx, [ecx]                                                    ;Task: Move the VALUE inside the buffer (ecx) to ebx 
+
+checks:
+        cmp bl, 31h                                                    ;Task: Compare the hex representation of '1' to the lower 8 bits of ebx
+        jb input                                                      ;Task: Use a jump below instruction and point it towards the 'input' label
+        cmp bl, 39h                                                    ;Task: Compare the hex representation of '9' to the lower 8 bits of ebx
+        ja input                                                       ;Task: Use a jump above instruction and point it towards the 'input' label
+        mov [number], ebx                                                    ;Task: Move the number in ebx into the LOCATION WITHIN the label 'number'
+
+filemanipulation:
+
+.createfile:
+        mov ecx, 0644o                                                    ;Task: Using octal notation, put 644 into ecx
+        mov ebx, filename                                                    ;Task: Move the 'filename' label into ebx
+        mov eax, 8                                                    ;Task: Move the number associated with sys_creat to eax
+        int 80h
+
+        mov [fd], eax                                                    ;Task: Move the return value from eax into the LOCATION WITHIN the label 'fd'
+
+.writefile:
+        mov edc, 1                                                    ;Task: Move the size of the 'number' variable into edx
+        mov ecx, number                                                    ;Task: Move the label 'number' into ecx 
+        mov ebx, [fd]                                                    ;Task: Move the VALUE within the label 'fd' into ebx
+        mov eax, 4                                                    ;Task: Move the number associated with sys_write to eax
+        int 80h
+
+.closefile:
+        mov ebx, [fd]                                                    ;Task: Move the VALUE within the label 'fd' into ebx
+        mov eax, 6                                                    ;Task: Move the number associated with sys_close to eax
+        int 80h
+
+exit:   
+        xor ebx, ebx
+        mov eax, 1
+        int 80h
+
+
+section .data                                                        ;Task: Set up the section which deals with initialised data
+        string: db "Please enter a number between 1-9: ", 0x0a
+        len:     equ $ - string
+        filename: db "Number.txt"
+
+section .bss                                                        ;Task: Set up the section which deals with unitialised data
+        number: resb 1                                                        ;Task: Reserve one byte for a variable called 'number'
+        fd: resb 1                                                        ;Task: Reserve one byte for a variable called 'fd'
