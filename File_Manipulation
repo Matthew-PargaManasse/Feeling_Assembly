@@ -37,7 +37,7 @@ filemanipulation:
         mov [fd], eax                                                    ;Task: Move the return value from eax into the LOCATION WITHIN the label 'fd'
 
 .writefile:
-        mov edc, 1                                                    ;Task: Move the size of the 'number' variable into edx
+        mov edx, 1                                                    ;Task: Move the size of the 'number' variable into edx
         mov ecx, number                                                    ;Task: Move the label 'number' into ecx 
         mov ebx, [fd]                                                    ;Task: Move the VALUE within the label 'fd' into ebx
         mov eax, 4                                                    ;Task: Move the number associated with sys_write to eax
