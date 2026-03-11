@@ -21,3 +21,10 @@ Once the object file assembly.obj has been successfully created, you will then h
   LINK is the linker which will finally create the executable. You must include the following switches:
   /SUBSYSTEM – This tells the linker that the executable will run through the console only, not create a graphical user   interface.
   /defaultlib – This tells the linker where the labels attached to the extern directive can be found.
+
+# Linux 64 Bit
+In order to create a 64-bit executable, run the command shown below:
+`nasm -felf64 assembly.asm && ld assembly.o`
+-felf64 – specifies the architecture to be 64-bit when assembled
+`file a.out`
+verifies correct compilation
