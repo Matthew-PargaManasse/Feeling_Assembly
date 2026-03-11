@@ -1,7 +1,7 @@
 section .text
 global _start
 _start:
-.sys_write
+.sys_write:
         mov rdx, len
         mov rsi, string
         mov rdi, 1
@@ -62,5 +62,5 @@ section .data                                                         ;Task: Set
 
 section .bss                                                        ;Task: Set up the section which deals with uninitialized data
         number: resb 1                                                        ;Task: Reserve one byte for a variable called 'number'
-                                                                ;Task: Reserve one byte for a variable called 'fd'
+        fd: resb 1                                                        ;Task: Reserve one byte for a variable called 'fd'
                                                                                                                                                                                                                                                       66,1          Bot
