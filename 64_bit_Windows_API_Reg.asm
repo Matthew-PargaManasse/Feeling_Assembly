@@ -11,11 +11,11 @@ BytesWritten dd  ?
 
 .code                                ; Task: Define the code section
 main PROC                                 ; Task: Define the start of the code using the label main with the PROC directive
-    .GetStdHandle:
+    ;GetStdHandle:
     mov rcx, -11                         ; Task: Copy the handle to the standard output device to the register RCX
     call GetStdHandle                        ; Task: Call the function 'GetStdHandle' 
 
-    .Write: 
+    ;Write: 
     push 0                        ; Task: Push the value '0' to the stack
     mov r9, offset BytesWritten                         ; Task: Copy the offset of the BytesWritten label to the register R9
     mov r8, MSG_LEN                         ; Task: Copy the label for the length of the message to the register R8
@@ -23,7 +23,7 @@ main PROC                                 ; Task: Define the start of the code u
     mov rcx, rax                         ; Task: Copy the return value of GetStdHandle(located in RAX) to the register RCX
     call WriteConsoleA                        ; Task: Call the function 'WriteConsoleA' with the amount of bytes for the parameters
 
-    .exit:
+    ;exit:
     mov rcx, 0
     call    ExitProcess
 
