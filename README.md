@@ -24,9 +24,13 @@ Once the object file assembly.obj has been successfully created, you will then h
 
 # Linux 64 Bit
 In order to create a 64-bit executable, run the command shown below:
+
 `nasm -felf64 assembly.asm && ld assembly.o`
+
 -felf64 – specifies the architecture to be 64-bit when assembled
+
 `file a.out`
+
 verifies correct compilation
 
 # Windows 64 Bit
