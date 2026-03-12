@@ -40,7 +40,7 @@ main PROC
     sub rsp, 40h                             ; Task: Subtract the correct amount of bytes in hexadecimal from the register RSP
     mov rax, 0                             ; Task: Copy the value '0' into the register RAX
     mov rbx, buf_LEN                             ; Task: Copy the label 'buf_LEN' to the register RBX
-    mov r10, buf                             ; Task: Copy the offset of the label 'buf' to the register R10
+    mov r10, offset buf                             ; Task: Copy the offset of the label 'buf' to the register R10
 
 ;GetDateFormatEx
     mov [rsp+30h], rax                             ; Task: Copy the register RAX into the register RSP + 30h
@@ -56,7 +56,7 @@ main PROC
 
 ;Write:
     push 0                            ; Task: Push the value '0' to the stack
-    mov r9, BytesWritten                             ; Task: Copy the offset of the label 'BytesWritten' to the register R9
+    mov r9, offset BytesWritten                             ; Task: Copy the offset of the label 'BytesWritten' to the register R9
     mov r8, rax                             ; Task: Copy the register RAX into the register R8
     mov rdx, offset buf                             ; Task: Copy the offset of the label 'buf' to the register RDX
     mov rcx, HANDLE                             ; Task: Copy the label 'HANDLE' to the register RCX
