@@ -31,7 +31,9 @@ verifies correct compilation
 
 # Windows 64 Bit
 To create a 64-bit executable, you will need to run the command shown below in the desktop directory:
+
 `ml64.exe /c /Cp .\assembly.asm`
+
 ml64.exe is the MASM executable with the following switches:
 /c – Assemble without linking
 /Cp – Preserve the case sensitivity
