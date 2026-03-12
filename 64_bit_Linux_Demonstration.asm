@@ -1,4 +1,4 @@
-section .text
+ection .text
 global main
 global _start
 _start:
@@ -15,9 +15,9 @@ main:
         jz exit
 
     ; read file content into buffer
-        mov rdx, 1                      ;size count
-        mov rsi,                        ;char buf
-        mov rdi,                        ;fd
+        mov rdx, 6                      ;size count of lable file_content
+        mov rsi, file_content                   ;char buf lable file_content
+        mov rdi, 0                      ;fd STDIN
         mov rax, 0
         syscall
 
@@ -25,14 +25,19 @@ main:
         jz exit
 
     ; write file content to stdout
-        mov rdx, 1              ;size
-        mov rsi,                ;const char buf
-        mov rdi,                ;file descriptor
+        mov rdx, 6              ;size of the 'file_content' variable
+        mov rsi, file_content           ;const char buf
+        mov rdi, filename               ;file descriptor
         mov rax, 1
         syscall
 
         cmp rax, 0
         jz exit
+
+    ; close file
+        mov rdi, filename
+        mov rax, 3
+        syscall
 
     ; exit
     mov rax, 60
